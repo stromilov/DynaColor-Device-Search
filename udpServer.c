@@ -10,7 +10,7 @@
 #include <netinet/in.h>
 
 
-#define PORT    8080
+#define PORT    6666
 #define MAXLINE 1024
 
 int main()
@@ -50,6 +50,11 @@ int main()
                 (struct sockaddr *) &cliaddr, 
                 &len
     );
+
+    unsigned int from_address = ntohs( cliaddr.sin_addr.s_addr) ;
+    unsigned int from_port = ntohs( cliaddr.sin_port );
+
+    printf("from IP: %d port: %d\n", from_address, from_port);
 
     buffer[n] = '\0';
 
